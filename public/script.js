@@ -90,25 +90,5 @@ searchButton.addEventListener("click", () => {
     curSelectedNav?.classList.remove("active");
     curSelectedNav = null;
 });
-// 🌙 DARK MODE TOGGLE
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  if (document.body.classList.contains("dark-mode")) {
-    themeToggle.textContent = "";
-    localStorage.setItem("theme", "dark");
-  } else {
-    themeToggle.textContent = "⏾";
-    localStorage.setItem("theme", "light");
-  }
-});
 
-// ✅ Remember user preference
-window.addEventListener("load", () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-    themeToggle.textContent = "🌤️";
-  }
-});
 
