@@ -1,8 +1,4 @@
 {
-  "builds": [
-    { "src": "mini_project/index.html", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "mini_project/$1" }
-  ]
+  "builds": [{ "src": "index.html", "use": "@vercel/static" }],
+  "routes": [{ "src": "/(.*)", "dest": "/$1" }]
 }
