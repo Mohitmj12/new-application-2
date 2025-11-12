@@ -173,3 +173,25 @@ main {
     color: var(--secondary-text-color);
     font-size: 0.9rem;
 }
+.hidden {
+  display: none;
+}
+
+.loading,
+.no-results {
+  text-align: center;
+  color: #183b56;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 30px;
+}
+
+.loading {
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.6;
+  }
+}

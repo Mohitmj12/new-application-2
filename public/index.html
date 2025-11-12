@@ -33,9 +33,12 @@
     </div>
   </nav>
 
-  <main>
-    <div class="cards-container container flex" id="cards-container"></div>
-  </main>
+<main>
+  <div id="loading" class="loading hidden">⏳ Loading news...</div>
+  <div id="no-results" class="no-results hidden">❌ No news found for this topic.</div>
+  <div class="cards-container container flex" id="cards-container"></div>
+</main>
+
 
   <template id="template-news-card">
     <div class="card">

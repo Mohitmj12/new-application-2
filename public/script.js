@@ -6,20 +6,34 @@ window.addEventListener("load", () => fetchNews("India"));
 function reload() {
     window.location.reload();
 }
-
 async function fetchNews(query) {
-    try {
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`${url}${query}&apiKey=${API_KEY}`)}`;
-        const res = await fetch(proxyUrl);
-        const proxyData = await res.json();
-        const data = JSON.parse(proxyData.contents);
-        bindData(data.articles);
-    } catch (error) {
-        console.error("Error fetching news:", error);
-        document.getElementById("cards-container").innerHTML =
-            "<p style='color:red;text-align:center;'>Failed to fetch news. Please try again later.</p>";
+  const loading = document.getElementById("loading");
+  const noResults = document.getElementById("no-results");
+  const cardsContainer = document.getElementById("cards-container");
+
+  loading.classList.remove("hidden");
+  noResults.classList.add("hidden");
+  cardsContainer.innerHTML = "";
+
+  try {
+    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+    const data = await res.json();
+
+    loading.classList.add("hidden");
+
+    if (!data.articles || data.articles.length === 0) {
+      noResults.classList.remove("hidden");
+      return;
     }
+
+    bindData(data.articles);
+  } catch (error) {
+    loading.classList.add("hidden");
+    noResults.textContent = "⚠️ Failed to load news. Please try again later.";
+    noResults.classList.remove("hidden");
+  }
 }
+
 
 function bindData(articles) {
     const cardsContainer = document.getElementById("cards-container");
