@@ -1,8 +1,10 @@
 {
+  "version": 2,
+  "public": true,
   "builds": [
-    { "src": "mini_project/index.html", "use": "@vercel/static" }
+    { "src": "index.html", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "mini_project/$1" }
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
