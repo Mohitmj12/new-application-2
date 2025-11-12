@@ -8,9 +8,17 @@ function reload() {
 }
 
 async function fetchNews(query) {
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-    const data = await res.json();
-    bindData(data.articles);
+    try {
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`${url}${query}&apiKey=${API_KEY}`)}`;
+        const res = await fetch(proxyUrl);
+        const proxyData = await res.json();
+        const data = JSON.parse(proxyData.contents);
+        bindData(data.articles);
+    } catch (error) {
+        console.error("Error fetching news:", error);
+        document.getElementById("cards-container").innerHTML =
+            "<p style='color:red;text-align:center;'>Failed to fetch news. Please try again later.</p>";
+    }
 }
 
 function bindData(articles) {
